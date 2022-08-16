@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as SockJS from 'sockjs-client';
-import * as Stomp from 'stompjs'
+import Stomp from 'stompjs'
 
 @Component({
   selector: 'app-root',
@@ -15,8 +15,7 @@ export class AppComponent {
   disabled = true;
   name: string = "";
 
-  socket = new SockJS('http://localhost:8080/chatroom-example');
-  stompClient = Stomp.over(this.socket)
+  private stompClient: any;
 
   constructor() { }
 
@@ -29,6 +28,9 @@ export class AppComponent {
   }
 
   connect() {
+    const socket = new SockJS('http://localhost:8080/chatroom-example');
+    this.stompClient = Stomp.over(socket)
+
     const _this = this;
     this.stompClient.connect({}, function (frame: any) {
       _this.setConnected(true);
