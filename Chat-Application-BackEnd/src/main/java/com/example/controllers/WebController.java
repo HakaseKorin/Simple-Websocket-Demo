@@ -12,6 +12,6 @@ public class WebController {
     @MessageMapping("/hello")
     @SendTo("/topic/hi")
     public Hello greeting(User user) throws Exception {
-        return new Hello("Hi" + user.getName() + "!");
+        return new Hello("Hi " + user.getName() + "!");
     }
 }

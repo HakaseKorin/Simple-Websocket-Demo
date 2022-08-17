@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import * as SockJS from 'sockjs-client';
-import Stomp from 'stompjs'
+import { WebsocketService } from './services/websocket.service';
+// import * as SockJS from 'sockjs-client';
+// import Stomp from 'stompjs'
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,9 @@ export class AppComponent {
   disabled = true;
   name: string = "";
 
-  private stompClient: any;
+  // private stompClient: any;
 
-  constructor() { }
+  constructor(private webSocketService: WebsocketService) { }
 
   setConnected(connected: boolean) {
     this.disabled = !connected;
@@ -28,38 +29,45 @@ export class AppComponent {
   }
 
   connect() {
-    const socket = new SockJS('http://localhost:8080/chatroom-example');
-    this.stompClient = Stomp.over(socket)
+    this.webSocketService.connect();
+    this.setConnected(true);
+    this.greetings = this.webSocketService.getGreeting();
+  //   const socket = new SockJS('http://localhost:8080/chatroom-example');
+  //   this.stompClient = Stomp.over(socket)
 
-    const _this = this;
-    this.stompClient.connect({}, function (frame: any) {
-      _this.setConnected(true);
-      console.log('Connected: ' + frame);
+  //   const _this = this;
+  //   this.stompClient.connect({}, function (frame: any) {
+  //     _this.setConnected(true);
+  //     console.log('Connected: ' + frame);
 
-      _this.stompClient.subscribe('/topic/hi', function (hello: any) {
-        _this.showGreeting(JSON.parse(hello.body).greeting);
-      });
-    });
+  //     _this.stompClient.subscribe('/topic/hi', function (hello: any) {
+  //       _this.showGreeting(JSON.parse(hello.body).greeting);
+  //     });
+  //   });
   }
 
   disconnect() {
-    if (this.stompClient != null) {
-      this.stompClient.disconnect();
-    }
-
+    this.webSocketService.disconnect();
     this.setConnected(false);
-    console.log('Disconnected!');
+  //   if (this.stompClient != null) {
+  //     this.stompClient.disconnect();
+  //   }
+
+  //   this.setConnected(false);
+  //   console.log('Disconnected!');
   }
 
   sendName() {
-    this.stompClient.send(
-      '/app/hello',
-      {},
-      JSON.stringify({ 'name': this.name })
-    );
+    this.webSocketService.sendName(this.name);
+  //   this.stompClient.send(
+  //     '/app/hello',
+  //     {},
+  //     JSON.stringify({ 'name': this.name })
+  //   );
   }
 
   showGreeting(message: any) {
     this.greetings.push(message);
   }
+
 }
