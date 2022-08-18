@@ -66,8 +66,4 @@ export class AppComponent {
   //   );
   }
 
-  showGreeting(message: any) {
-    this.greetings.push(message);
-  }
-
 }

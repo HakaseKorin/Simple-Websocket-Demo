@@ -8,6 +8,7 @@ import Stomp from 'stompjs';
 export class WebsocketService {
 
   greetings: any[] = [];
+  chatLog: any[] = [];
   stompClient: any;
 
   constructor() { }
@@ -53,6 +54,10 @@ export class WebsocketService {
 
   getGreeting() {
     return this.greetings;
+  }
+
+  getChatLog() {
+    return this.chatLog;
   }
 
 }

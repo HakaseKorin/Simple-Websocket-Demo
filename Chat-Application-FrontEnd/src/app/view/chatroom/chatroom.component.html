@@ -1,0 +1,23 @@
+<div>
+    <ul class="chatList">
+        <li class="chat" *ngFor="let item of content">{{item.username}}</li>
+    </ul>
+    <!-- scrollable room log -->
+    <ol class="chatbox">
+        <li class="chat" *ngFor="let chat of chatLog">
+            {{chat.username}}[{{chat.timestamp}}] : {{chat.message}} 
+        </li>
+    </ol>
+    <form>
+        <!-- username input field -->
+        <input class="username" name="username" type="text" [(ngModel)]="username" placeholder="Username">
+        <!-- message input field -->
+        <input class="message" name="message" type="text" [(ngModel)]="message" placeholder="Message">
+        <!-- send button -->
+        <button class="send" type="button" (click)="send()">Send</button>
+    </form>
+    <form>
+        <button class="connection" type="button" [disabled]="!disabled" (click)="connect()">Connect</button>
+        <button class="connection" type="button" [disabled]="disabled" (click)="disconnect()">Disconnect</button>
+    </form>
+</div>

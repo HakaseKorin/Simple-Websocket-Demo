@@ -1,0 +1,59 @@
+.chatList {
+    padding: 1rem;
+    margin: 1rem 0rem 1rem 1rem;
+    height: 84vh;
+    width: 10vw;
+    border: 1px;
+    border-style: solid;
+    font-size: x-large;
+    list-style: none;
+    overflow: scroll;
+    display: inline-block;
+}
+
+.chatbox {
+    padding: 1rem;
+    margin: 1rem 1rem 1rem 0rem;
+    height: 84vh;
+    width: 85vw;
+    border: 1px;
+    border-style: solid;
+    list-style: none;
+    overflow: scroll;
+    display: inline-block;
+}
+
+.chat {
+    font-size:x-large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: .25rem;
+    margin-bottom: .25rem;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: lightgray;
+}
+
+.username {
+    width: 10vw;
+    padding: .5rem 1rem;
+    margin-left: 1rem;
+    font-size: medium;
+}
+
+.message {
+    width: 75vw;
+    padding: .5rem  1rem;
+    font-size: medium;
+}
+
+.send {
+    width: 5vw;
+    padding: .5rem;
+    font-size: medium;
+}
+
+.connection {
+    padding: .5rem 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}

@@ -3,10 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChatroomComponent } from './view/chatroom/chatroom.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,
