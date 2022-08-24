@@ -13,7 +13,7 @@ export class WebsocketService {
 
   constructor() { }
 
-  connect() {
+  connect(user?:string) {
     const socket = new SockJS('http://localhost:8080/chatroom-example');
     this.stompClient = Stomp.over(socket)
 
@@ -21,8 +21,9 @@ export class WebsocketService {
     this.stompClient.connect({}, function (frame: any) {
       console.log('Connected: ' + frame);
 
-      _this.stompClient.subscribe('/topic/hi', function (hello: any) {
-        _this.showGreeting(JSON.parse(hello.body).greeting);
+      _this.stompClient.subscribe('/topic/message', function (message: any) {
+        console.log(JSON.parse(message.body).message);
+        _this.showChat(JSON.parse(message.body).message);
       });
     });
   }
@@ -32,7 +33,7 @@ export class WebsocketService {
     return _this.stompClient;
   }
 
-  disconnect() {
+  disconnect(user?:string) {
     if (this.stompClient != null) {
       this.stompClient.disconnect();
     }
@@ -48,8 +49,25 @@ export class WebsocketService {
     );
   }
 
+  sendChat(user:any, content:any) {
+    var timestamp = Date.now().toString();
+    this.stompClient.send(
+      '/app/send',
+      {},
+      JSON.stringify({
+        'username':user,
+        'content':content,
+        'time': timestamp
+      })
+    );
+  }
+
   showGreeting(message: any) {
     this.greetings.push(message);
+  }
+
+  showChat(message: any) {
+    this.chatLog.push(message);
   }
 
   getGreeting() {

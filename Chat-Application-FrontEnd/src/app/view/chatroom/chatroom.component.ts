@@ -8,57 +8,47 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class ChatroomComponent implements OnInit {
 
-  chatLog: any[] = [
-    {
-      username: "SYSTEM",
-      message: ">> john has connected.",
-      timestamp: "10:51AM"
-    },
-    {
-      username: "SYSTEM",
-      message: ">> jane has connected.",
-      timestamp: "10:52AM"
-    },
-    {
-      username: "john",
-      message: "hello jane",
-      timestamp: "10:53AM"
-    },
-    {
-      username: "jane",
-      message: "hello John",
-      timestamp: "10:54AM"
-    },
-    {
-      username: "john",
-      message: "hows the weather",
-      timestamp: "10:55AM"
-    },        
-  ];
+  chatLog: any[] = [ ];
 
   content: any[] = [
     {
-      username: "john"
+      username: "John"
     },
     {
-      username: "jane"
+      username: "Jane"
     }
   ];
   message: string = "";
   username: string = "";
-  disabled = false;
+  disabled = true;
 
   constructor(private webSocketService: WebsocketService) { }
+
+setConnected(status:boolean){
+  this.disabled = !status;
+
+  if(status)
+    this.chatLog = [];
+}
+
   // send message to chat
-  send() {}
+  send() {
+    this.webSocketService.sendChat(this.username, this.message);
+    this.message = "";
+  }
   // connect to chat, notifies chat
   connect() {
-    this.webSocketService.connect();
+    this.webSocketService.connect(this.username);
+    this.setConnected(true);
     this.chatLog = this.webSocketService.getChatLog();
+    // this.webSocketService.sendChat("SYSTEM",`>> ${this.username} has joined the chatroom`);
+    
   }
   // discconect from chat, notifies chat
   disconnect() {
-    this.webSocketService.disconnect();
+    // this.webSocketService.sendChat("SYSTEM",`>> ${this.username} has left the chatroom`);
+    this.webSocketService.disconnect(this.username);
+    this.setConnected(false);
   }
 
   ngOnInit(): void {

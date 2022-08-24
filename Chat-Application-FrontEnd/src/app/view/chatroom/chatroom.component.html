@@ -1,11 +1,11 @@
-<div>
+<div (keydown.enter)="send()">
     <ul class="chatList">
         <li class="chat" *ngFor="let item of content">{{item.username}}</li>
     </ul>
     <!-- scrollable room log -->
     <ol class="chatbox">
         <li class="chat" *ngFor="let chat of chatLog">
-            {{chat.username}}[{{chat.timestamp}}] : {{chat.message}} 
+            {{chat}} 
         </li>
     </ol>
     <form>
@@ -20,4 +20,4 @@
         <button class="connection" type="button" [disabled]="!disabled" (click)="connect()">Connect</button>
         <button class="connection" type="button" [disabled]="disabled" (click)="disconnect()">Disconnect</button>
     </form>
-</div>
+</div>`

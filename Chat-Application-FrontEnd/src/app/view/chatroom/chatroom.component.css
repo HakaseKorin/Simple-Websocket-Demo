@@ -1,7 +1,7 @@
 .chatList {
     padding: 1rem;
     margin: 1rem 0rem 1rem 1rem;
-    height: 84vh;
+    height: 75vh;
     width: 10vw;
     border: 1px;
     border-style: solid;
@@ -14,8 +14,8 @@
 .chatbox {
     padding: 1rem;
     margin: 1rem 1rem 1rem 0rem;
-    height: 84vh;
-    width: 85vw;
+    height: 75vh;
+    width: 75vw;
     border: 1px;
     border-style: solid;
     list-style: none;
