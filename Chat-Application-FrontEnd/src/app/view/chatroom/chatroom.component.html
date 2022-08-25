@@ -1,6 +1,6 @@
 <div (keydown.enter)="send()">
     <ul class="chatList">
-        <li class="chat" *ngFor="let item of content">{{item.username}}</li>
+        <li class="chat" *ngFor="let player of participants">{{player.username}}</li>
     </ul>
     <!-- scrollable room log -->
     <ol class="chatbox">
@@ -20,4 +20,4 @@
         <button class="connection" type="button" [disabled]="!disabled" (click)="connect()">Connect</button>
         <button class="connection" type="button" [disabled]="disabled" (click)="disconnect()">Disconnect</button>
     </form>
-</div>`
+</div>

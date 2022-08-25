@@ -7,7 +7,6 @@ import com.example.models.User;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,10 +21,11 @@ public class WebController {
 
     @MessageMapping("/send")
     @SendTo("/topic/message")
-    public ChatMessage chatMessage(Message message) {
+    public Message chatMessage(Message message) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm a");
         String formattedDate = now.format(formatter);
-        return new ChatMessage(String.format("%1$s [%2$s]: %3$s",message.getUsername(), formattedDate,message.getContent()));
+        return new Message(message.getUsername(), message.getContent(), formattedDate.toString());
+//        return new ChatMessage(String.format("%1$s [%2$s]: %3$s",message.getUsername(), formattedDate,message.getContent()));
     }
 }

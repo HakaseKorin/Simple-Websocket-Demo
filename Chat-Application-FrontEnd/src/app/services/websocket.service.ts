@@ -20,10 +20,17 @@ export class WebsocketService {
     const _this = this;
     this.stompClient.connect({}, function (frame: any) {
       console.log('Connected: ' + frame);
+      _this.sendChat("SYSTEM", `>> ${user} has joined the chatroom`);
 
       _this.stompClient.subscribe('/topic/message', function (message: any) {
-        console.log(JSON.parse(message.body).message);
-        _this.showChat(JSON.parse(message.body).message);
+        // console.log(JSON.parse(message.body));
+
+        var username = JSON.parse(message.body).username;
+        var content = JSON.parse(message.body).content;
+        var time = JSON.parse(message.body).time;
+        _this.showChat(`${username} [${time}] : ${content}`);
+
+        // _this.showChat(JSON.parse(message.body).message);
       });
     });
   }
@@ -35,10 +42,11 @@ export class WebsocketService {
 
   disconnect(user?:string) {
     if (this.stompClient != null) {
+      this.sendChat("SYSTEM", `>> ${user} has left the chatroom`);
       this.stompClient.disconnect();
     }
 
-    console.log('Disconnected!');
+    // console.log('Disconnected!');
   }
 
   sendName(name: any) {
@@ -50,14 +58,13 @@ export class WebsocketService {
   }
 
   sendChat(user:any, content:any) {
-    var timestamp = Date.now().toString();
     this.stompClient.send(
       '/app/send',
       {},
       JSON.stringify({
         'username':user,
         'content':content,
-        'time': timestamp
+        'time': null
       })
     );
   }

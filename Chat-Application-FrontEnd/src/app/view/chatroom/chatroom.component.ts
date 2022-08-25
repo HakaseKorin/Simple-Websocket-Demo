@@ -10,7 +10,7 @@ export class ChatroomComponent implements OnInit {
 
   chatLog: any[] = [ ];
 
-  content: any[] = [
+  participants: any[] = [
     {
       username: "John"
     },
