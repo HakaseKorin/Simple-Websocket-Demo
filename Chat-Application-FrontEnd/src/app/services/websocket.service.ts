@@ -7,7 +7,7 @@ import Stomp from 'stompjs';
 })
 export class WebsocketService {
 
-  greetings: any[] = [];
+  // greetings: any[] = [];
   chatLog: any[] = [];
   stompClient: any;
 
@@ -35,10 +35,10 @@ export class WebsocketService {
     });
   }
 
-  getStompClient() {
-    const _this = this;
-    return _this.stompClient;
-  }
+  // getStompClient() {
+  //   const _this = this;
+  //   return _this.stompClient;
+  // }
 
   disconnect(user?:string) {
     if (this.stompClient != null) {
@@ -49,13 +49,13 @@ export class WebsocketService {
     // console.log('Disconnected!');
   }
 
-  sendName(name: any) {
-    this.stompClient.send(
-      '/app/hello',
-      {},
-      JSON.stringify({ 'name': name })
-    );
-  }
+  // sendName(name: any) {
+  //   this.stompClient.send(
+  //     '/app/hello',
+  //     {},
+  //     JSON.stringify({ 'name': name })
+  //   );
+  // }
 
   sendChat(user:any, content:any) {
     this.stompClient.send(
@@ -69,17 +69,17 @@ export class WebsocketService {
     );
   }
 
-  showGreeting(message: any) {
-    this.greetings.push(message);
-  }
+  // showGreeting(message: any) {
+  //   this.greetings.push(message);
+  // }
 
   showChat(message: any) {
     this.chatLog.push(message);
   }
 
-  getGreeting() {
-    return this.greetings;
-  }
+  // getGreeting() {
+  //   return this.greetings;
+  // }
 
   getChatLog() {
     return this.chatLog;

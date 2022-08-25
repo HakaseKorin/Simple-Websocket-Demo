@@ -9,7 +9,6 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 export class ChatroomComponent implements OnInit {
 
   chatLog: any[] = [ ];
-
   participants: any[] = [
     {
       username: "John"
