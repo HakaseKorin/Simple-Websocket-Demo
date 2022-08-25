@@ -4,11 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatroomComponent } from './view/chatroom/chatroom.component';
+import { LoginComponent } from './view/login/login.component';
+import { SignUpComponent } from './view/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatroomComponent
+    ChatroomComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
