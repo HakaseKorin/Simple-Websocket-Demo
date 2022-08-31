@@ -1,5 +1,6 @@
 package com.example.models;
 
+@Deprecated
 public class Hello {
 
     private String greeting;

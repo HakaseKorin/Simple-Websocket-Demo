@@ -1,5 +1,6 @@
 package com.example.models;
 
+@Deprecated
 public class ChatMessage {
 
     private String message;

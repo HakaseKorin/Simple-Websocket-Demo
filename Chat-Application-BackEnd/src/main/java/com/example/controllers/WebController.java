@@ -13,11 +13,11 @@ import java.time.format.DateTimeFormatter;
 @Controller
 public class WebController {
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/hi")
-    public Hello greeting(User user) throws Exception {
-        return new Hello("Hi " + user.getName() + "!");
-    }
+//    @MessageMapping("/hello")
+//    @SendTo("/topic/hi")
+//    public Hello greeting(User user) throws Exception {
+//        return new Hello("Hi " + user.getName() + "!");
+//    }
 
     @MessageMapping("/send")
     @SendTo("/topic/message")
