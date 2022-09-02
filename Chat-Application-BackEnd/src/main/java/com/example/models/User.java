@@ -2,6 +2,7 @@ package com.example.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -21,7 +22,10 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "owner")
-    private List<Room> rooms;
+    private List<Room> ownedRooms;
+
+    @ManyToMany
+    private Set<Room> joinedRooms;
 
     public User() {
     }
