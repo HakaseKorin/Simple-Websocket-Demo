@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,11 +33,11 @@ class RoomControllerTest {
 
     @BeforeEach
     public void init(){
-        user = new User("username", "password", "JohnDoe", "JohnDoe@email.com");
-        room = new Room(0,"Title", "password", user);
+        user = new User(1, "email", "password", "display name", new HashSet<>(), new HashSet<>());
+        room = new Room(0,"Title", "password", user.getId(), new HashSet<>());
         rooms.add(room);
-        rooms.add(new Room(1,"Two","password",new User()));
-        rooms.add(new Room(2, "Three", "password", new User()));
+        rooms.add(new Room(1,"Two","password",2, new HashSet<>()));
+        rooms.add(new Room(2, "Three", "password", 3, new HashSet<>()));
     }
 
     @Test

@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -27,7 +29,7 @@ class UserServiceTest {
 
     @BeforeEach
     public void init(){
-        user = new User("username", "password", "JohnDoe", "JohnDoe@email.com");
+        user = new User(1, "email", "password", "display name", new HashSet<>(), new HashSet<>());
     }
 
     @Test
@@ -38,15 +40,15 @@ class UserServiceTest {
 
     @Test
     void getUserByUsernameAndPassword() {
-        when(userRepository.getUserByUsernameAndPassword(any(String.class),any(String.class))).thenReturn(user);
-        User result = userService.getUserByUsernameAndPassword("username", "password");
+        when(userRepository.getUserByEmailAndPassword(any(String.class),any(String.class))).thenReturn(user);
+        User result = userService.getUserByEmailAndPassword("username", "password");
         assertEquals(user, result);
     }
 
     @Test
     void getUserByUsernameAndPassword_Returns_Null(){
-        when(userRepository.getUserByUsernameAndPassword(any(String.class),any(String.class))).thenReturn(null);
-        User result = userService.getUserByUsernameAndPassword("dummy", "dummy");
+        when(userRepository.getUserByEmailAndPassword(any(String.class),any(String.class))).thenReturn(null);
+        User result = userService.getUserByEmailAndPassword("dummy", "dummy");
         assertNull(result);
     }
 

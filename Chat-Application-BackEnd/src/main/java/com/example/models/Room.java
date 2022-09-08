@@ -1,6 +1,7 @@
 package com.example.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,26 +20,26 @@ public class Room {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "owner")
-    private User owner;
+    @Column(name = "owner")
+    private Integer owner;
 
     @ManyToMany
     @JoinTable(
             name = "room_user",
-            joinColumns = @JoinColumn(name = "display_name"),
-            inverseJoinColumns = @JoinColumn(name = "room_id")
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private Set<String> participants;
+    private Set<User> participants = new HashSet<>();
 
     public Room() {
     }
 
-    public Room(Integer roomId, String title, String password, User owner) {
+    public Room(Integer roomId, String title, String password, Integer owner, Set<User> participants) {
         this.roomId = roomId;
         this.title = title;
         this.password = password;
         this.owner = owner;
+        this.participants = participants;
     }
 
     public Integer getRoomId() {
@@ -65,15 +66,15 @@ public class Room {
         this.password = password;
     }
 
-    public User getOwner() {
+    public Integer getOwner() {
         return owner;
     }
 
-    public Set<String> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(Set<String> participants) {
-        this.participants = participants;
-    }
+//    public Set<String> getParticipants() {
+//        return participants;
+//    }
+//
+//    public void setParticipants(Set<String> participants) {
+//        this.participants = participants;
+//    }
 }

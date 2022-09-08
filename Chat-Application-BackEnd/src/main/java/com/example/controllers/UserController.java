@@ -25,7 +25,7 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public User login(@RequestBody String username, String password){
-        return userService.getUserByUsernameAndPassword(username,password);
+        return userService.getUserByEmailAndPassword(username,password);
     }
 
     @PutMapping("/user")

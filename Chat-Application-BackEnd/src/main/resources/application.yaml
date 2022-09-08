@@ -1,14 +1,20 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: username
-    password: password
-    driverClassName: org.h2.Driver
+    url: jdbc:postgresql://database-2.ckq2qfwf1oke.us-east-1.rds.amazonaws.com:5432/testdb
+    username: postgres
+    password: KabquIhjbDiScglpr28y
+    driverClassName: org.postgresql.Driver
+#    url: jdbc:h2:mem:testdb
+#    password: password
+#    username: username
+#    driverClassName: org.h2.Driver
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    spring.jpa.database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+#    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+      ddl-auto: update
+#      ddl-auto: create
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console

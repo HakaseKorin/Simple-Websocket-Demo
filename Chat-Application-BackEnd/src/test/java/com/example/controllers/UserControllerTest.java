@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
@@ -27,7 +29,7 @@ class UserControllerTest {
 
     @BeforeEach
     public void init(){
-        user = new User("username", "password", "JohnDoe", "JohnDoe@email.com");
+        user = new User(1, "email", "password", "display name", new HashSet<>(), new HashSet<>());
     }
 
     @Test
@@ -38,7 +40,7 @@ class UserControllerTest {
 
     @Test
     void login() {
-        when(userService.getUserByUsernameAndPassword(anyString(),anyString())).thenReturn(user);
+        when(userService.getUserByEmailAndPassword(anyString(),anyString())).thenReturn(user);
         User result = userController.login("username","password");
         assertEquals(user,result);
     }

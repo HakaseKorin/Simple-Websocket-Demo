@@ -1,9 +1,6 @@
 package com.example.controllers;
 
-import com.example.models.ChatMessage;
-import com.example.models.Hello;
 import com.example.models.Message;
-import com.example.models.User;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
