@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -80,6 +81,26 @@ class RoomServiceTest {
         when(roomRepository.getRoomByRoomId(any(Integer.class))).thenReturn(null);
         Room result = roomService.getRoomByRoomId(-1);
         assertNull(result);
+    }
+
+    @Test
+    void getParticipants(){
+        Set<String> list = new HashSet<>();
+        when(roomRepository.getParticipants(any(Integer.class))).thenReturn(list);
+        Set<String> result = roomService.getParticipants(1);
+        assertEquals(list, result);
+    }
+
+    @Test
+    void addParticipant(){
+        roomService.addParticipant(1,1);
+        verify(roomRepository).addParticipant(1,1);
+    }
+
+    @Test
+    void removeParticipant(){
+        roomService.removeParticipant(1,1);
+        verify(roomRepository).removeParticipant(1,1);
     }
 
     @Test

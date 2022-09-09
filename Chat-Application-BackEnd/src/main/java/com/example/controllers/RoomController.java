@@ -40,8 +40,8 @@ public class RoomController {
         return roomService.getAllRooms();
     }
 
-//    @GetMapping("/room/participants/{id}")
-//    public Set<String> getParticipants(@PathVariable("id") Integer roomId) { return roomService.getParticipants(roomId); }
+    @GetMapping("/room/participants/{id}")
+    public Set<String> getParticipants(@PathVariable("id") Integer roomId) { return roomService.getParticipants(roomId); }
 
     // updates when user joins/leaves room
     @PutMapping("/room")
@@ -50,11 +50,11 @@ public class RoomController {
         roomService.updateRoom(room);
     }
 
-//    @PutMapping("/room/participants/{roomId}/{userId}")
-//    public void addParticipant(@PathVariable("roomId") Integer roomId,@PathVariable("userId") Integer userId) { roomService.addParticipant(roomId, userId); }
-//
-//    @DeleteMapping("/room/participants/{roomId}/{userId}")
-//    public void removeParticipant(@PathVariable("roomId") Integer roomId,@PathVariable("userId") Integer userId) { roomService.removeParticipant(roomId, userId); }
+    @PutMapping("/room/participants/{roomId}/{userId}")
+    public void addParticipant(@PathVariable("roomId") Integer roomId,@PathVariable("userId") Integer userId) { roomService.addParticipant(roomId, userId); }
+
+    @DeleteMapping("/room/participants/{roomId}/{userId}")
+    public void removeParticipant(@PathVariable("roomId") Integer roomId,@PathVariable("userId") Integer userId) { roomService.removeParticipant(roomId, userId); }
 
     @DeleteMapping("/room")
     @ResponseBody

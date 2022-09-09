@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -81,9 +82,29 @@ class RoomControllerTest {
     }
 
     @Test
+    void getParticipants(){
+        Set<String> list = new HashSet<>();
+        when(roomService.getParticipants(any(Integer.class))).thenReturn(list);
+        Set<String> result = roomController.getParticipants(1);
+        assertEquals(list, result);
+    }
+
+    @Test
     void updateRoom() {
         roomController.updateRoom(room);
         verify(roomService).updateRoom(room);
+    }
+
+    @Test
+    void addParticipant(){
+        roomController.addParticipant(1,1);
+        verify(roomService).addParticipant(1,1);
+    }
+
+    @Test
+    void removeParticipant(){
+        roomController.removeParticipant(1,1);
+        verify(roomService).removeParticipant(1,1);
     }
 
     @Test
