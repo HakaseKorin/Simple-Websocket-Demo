@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+    /*
+        TODO: change user DB to only track user's display information tying it to their user id
+        Login will be handled by another service
+     */
 
     @PostMapping("/user")
     @ResponseBody
@@ -22,6 +27,7 @@ public class UserController {
         userService.createUser(user);
     }
 
+    @Deprecated
     @PostMapping("/login")
     @ResponseBody
     public User login(@RequestBody String username, String password){

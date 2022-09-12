@@ -38,12 +38,12 @@ class UserControllerTest {
         verify(userService).createUser(user);
     }
 
-    @Test
-    void login() {
-        when(userService.getUserByEmailAndPassword(anyString(),anyString())).thenReturn(user);
-        User result = userController.login("username","password");
-        assertEquals(user,result);
-    }
+//    @Test
+//    void login() {
+//        when(userService.getUserByEmailAndPassword(anyString(),anyString())).thenReturn(user);
+//        User result = userController.login("username","password");
+//        assertEquals(user,result);
+//    }
 
     @Test
     void updateUser() {
