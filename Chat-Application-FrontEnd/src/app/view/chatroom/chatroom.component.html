@@ -10,14 +10,14 @@
     </ol>
     <form>
         <!-- username input field -->
-        <input class="username" name="username" type="text" [(ngModel)]="username" placeholder="Username">
+        <!-- <input class="username" name="username" type="text" [(ngModel)]="username" placeholder="Username"> -->
         <!-- message input field -->
         <input class="message" name="message" type="text" [(ngModel)]="message" placeholder="Message">
         <!-- send button -->
         <button class="send" type="button" (click)="send()">Send</button>
     </form>
-    <form>
+    <!-- <form>
         <button class="connection" type="button" [disabled]="!disabled" (click)="connect()">Connect</button>
         <button class="connection" type="button" [disabled]="disabled" (click)="disconnect()">Disconnect</button>
-    </form>
+    </form> -->
 </div>

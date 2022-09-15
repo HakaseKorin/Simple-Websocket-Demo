@@ -6,14 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Set;
 
-@Controller
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
 public class RoomController {
 
     private final RoomService roomService;
@@ -23,7 +21,6 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    // DB handles the creation of rooms and remembering their details
     @PostMapping("/room")
     @ResponseBody
     public void createRoom(@RequestBody Room room){
@@ -40,13 +37,10 @@ public class RoomController {
         return roomService.getRoomByRoomId(roomId);
     }
 
-    @GetMapping("/room/all")
     public ResponseEntity<List<Room>> getAllRooms(){
         List<Room> roomList= roomService.getAllRooms();
         return new ResponseEntity<>(roomList, new HttpHeaders(), HttpStatus.OK);
     }
-
-    // TODO: change to send users joining/leaving the room via websocket, room interactions will be tracked in logs
 
     @GetMapping("/room/participants/{id}")
     public Set<String> getParticipants(@PathVariable("id") Integer roomId) { return roomService.getParticipants(roomId); }

@@ -1,0 +1,21 @@
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+}
+
+.form{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: .5rem;
+    margin-bottom: .5rem;
+}
+
+.button{
+    padding: .5rem;
+}
+
+.alert{
+    color: rgb(226, 23, 23);
+}

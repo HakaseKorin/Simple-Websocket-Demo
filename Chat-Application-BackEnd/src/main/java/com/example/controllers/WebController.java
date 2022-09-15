@@ -26,7 +26,7 @@ public class WebController {
         String formattedDate = now.format(formatter);
 
         this.template.convertAndSend(
-                String.format("topic/%s",room.toString()),
+                String.format("/topic/%s",room.toString()),
                 new Message(message.getUsername(), message.getContent(), formattedDate));
     }
 

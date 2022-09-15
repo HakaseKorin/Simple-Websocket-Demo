@@ -7,22 +7,20 @@ import Stomp from 'stompjs';
 })
 export class WebsocketService {
 
-  // greetings: any[] = [];
   chatLog: any[] = [];
   stompClient: any;
 
   constructor() { }
 
-  connect(user?:string) {
+  connect(roomId:string) {
     const socket = new SockJS('http://localhost:8080/chatroom-example');
     this.stompClient = Stomp.over(socket)
 
     const _this = this;
     this.stompClient.connect({}, function (frame: any) {
       console.log('Connected: ' + frame);
-      _this.sendChat("SYSTEM", `>> ${user} has joined the chatroom`);
 
-      _this.stompClient.subscribe('/topic/message', function (message: any) {
+      _this.stompClient.subscribe(`/topic/${roomId}`, function (message: any) {
         // console.log(JSON.parse(message.body));
 
         var username = JSON.parse(message.body).username;
@@ -35,31 +33,14 @@ export class WebsocketService {
     });
   }
 
-  // getStompClient() {
-  //   const _this = this;
-  //   return _this.stompClient;
-  // }
-
-  disconnect(user?:string) {
-    if (this.stompClient != null) {
-      this.sendChat("SYSTEM", `>> ${user} has left the chatroom`);
+  disconnect() {
+    if (this.stompClient != null)
       this.stompClient.disconnect();
-    }
-
-    // console.log('Disconnected!');
   }
 
-  // sendName(name: any) {
-  //   this.stompClient.send(
-  //     '/app/hello',
-  //     {},
-  //     JSON.stringify({ 'name': name })
-  //   );
-  // }
-
-  sendChat(user:any, content:any) {
+  sendChat(user:any, content:any, roomId:any) {
     this.stompClient.send(
-      '/app/send',
+      `/app/send/${roomId}`,
       {},
       JSON.stringify({
         'username':user,
@@ -69,20 +50,8 @@ export class WebsocketService {
     );
   }
 
-  // showGreeting(message: any) {
-  //   this.greetings.push(message);
-  // }
+  showChat(message: any) { this.chatLog.push(message); }
 
-  showChat(message: any) {
-    this.chatLog.push(message);
-  }
-
-  // getGreeting() {
-  //   return this.greetings;
-  // }
-
-  getChatLog() {
-    return this.chatLog;
-  }
+  getChatLog() { return this.chatLog; }
 
 }
