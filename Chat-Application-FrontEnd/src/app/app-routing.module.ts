@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: 'lobby', component: LobbyComponent},
   {path: 'chatroom', component: ChatroomComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo:'login',pathMatch:'full'},
+  {path: '', redirectTo:'chatroom',pathMatch:'full'},
 ];
 
 @NgModule({
