@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/models/room';
 import { RoomService } from 'src/app/services/room.service';
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
   selector: 'lobby',
@@ -34,7 +35,10 @@ export class LobbyComponent implements OnInit {
 
   // pass username data and selected room number to chatroom for websocket and displayname
 
-  constructor(private roomService:RoomService) { }
+  constructor(
+    private roomService:RoomService,
+    private webSocket:WebsocketService,
+    ) { this.webSocket.connect("00")}
 
   ngOnInit(): void {
     this.roomService.getAllRooms().subscribe( (data) => {

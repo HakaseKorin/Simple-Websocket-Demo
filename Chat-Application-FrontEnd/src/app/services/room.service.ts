@@ -9,22 +9,26 @@ export class RoomService {
 
   constructor(private http:HttpClient) { }
 
-  createRoom(){ 
+  createRoom(title:string, owner:number, password:string){ 
     const formData = new FormData();
-    formData.append('title', 'title');
-    formData.append('password', 'password');
-    formData.append('owner', '1');
+
+    formData.append('title', title);
+    formData.append('password', password);
+    formData.append('owner', owner.toString());
+
     return this.http.post<Room>(`localhost:8080/room`, formData);
   }
   
   getAllRooms(){ return this.http.get<Room[]>(`localhost:8080/room/all`); }
 
-  updateRoom(){
+  updateRoom(roomId:number, title:string, password:string, owner:number){
     const formData = new FormData();
-    formData.append('room_id', '1');
-    formData.append('title', 'title');
-    formData.append('password', 'password');
-    formData.append('owner','1');
+    
+    formData.append('room_id', roomId.toString());
+    formData.append('title', title);
+    formData.append('password', password);
+    formData.append('owner',owner.toString());
+
     this.http.put<void>(`localhost:8080/room`, formData);
   }
 

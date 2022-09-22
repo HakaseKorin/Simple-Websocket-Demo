@@ -79,8 +79,10 @@ class RoomControllerTest {
     @Test
     void getAllRooms() {
         when(roomService.getAllRooms()).thenReturn(rooms);
-        ResponseEntity<List<Room>> result = roomController.getAllRooms();
-        assertEquals(HttpStatus.OK, result.getStatusCode());
+        List<Room> result = roomController.getAllRooms();
+//        ResponseEntity<List<Room>> result = roomController.getAllRooms();
+//        assertEquals(HttpStatus.OK, result.getStatusCode());
+        assertEquals(rooms, result);
     }
 
     @Test

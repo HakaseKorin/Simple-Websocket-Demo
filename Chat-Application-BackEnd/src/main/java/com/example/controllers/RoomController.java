@@ -3,9 +3,6 @@ package com.example.controllers;
 import com.example.models.Room;
 import com.example.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
@@ -37,10 +34,8 @@ public class RoomController {
         return roomService.getRoomByRoomId(roomId);
     }
 
-    public ResponseEntity<List<Room>> getAllRooms(){
-        List<Room> roomList= roomService.getAllRooms();
-        return new ResponseEntity<>(roomList, new HttpHeaders(), HttpStatus.OK);
-    }
+    @GetMapping("/room/all")
+    public List<Room> getAllRooms() { return roomService.getAllRooms(); }
 
     @GetMapping("/room/participants/{id}")
     public Set<String> getParticipants(@PathVariable("id") Integer roomId) { return roomService.getParticipants(roomId); }

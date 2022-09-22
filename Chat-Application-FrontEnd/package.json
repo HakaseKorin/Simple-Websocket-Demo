@@ -21,6 +21,8 @@
     "@stomp/stompjs": "^6.1.2",
     "net": "^1.0.2",
     "rxjs": "~7.5.0",
+    "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2",
     "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
     "tslib": "^2.3.0",
